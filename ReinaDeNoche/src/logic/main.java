@@ -6,26 +6,27 @@ import java.util.ArrayList;
 
 public class main {
 
-    public static double sizeOfTree(double size, double porcentage, double minleaf, double value) {
+    public static double sizeOfTree(double size, double porcentage, double minleaf, double value, int count) {
         if (size <= minleaf) {
             return value;
         }
-        return sizeOfTree(size - (size * porcentage), porcentage, minleaf, value + size);
+        System.out.println(count++);
+        return sizeOfTree(size * porcentage, porcentage, minleaf, value + size, count);
     }
 
     public static void main(String args[]) {
         TestGenerator generator = new TestGenerator();
-        TestTree  tree = generator.getTests()[0].get(0));
-        
-       System.out.println(tree.getGrow_percentage());
+        Probabilistic proba = new Probabilistic();
+        System.err.println(generator.getTests().getClass());
+        System.out.println(proba.selectObjetive( generator.getTests()[0]));
+        /*
+        TestTree tree = (generator.getTests()[0].get(0));
+        System.out.println(generator.getTests()[2].size());
         System.err.println(tree.getLength() + "-" + tree.getGrow_percentage() + "-" + tree.getLeafLength());
         double value = 0;
-       double length = tree.getLength();
-       
-       System.err.println("Final:" + value);
-       System.out.println(sizeOfTree(tree.getLength(), tree.getGrow_percentage(), tree.getLeafLength(), 0));
-
+        double length = tree.getLength();
+        System.out.println("S" + sizeOfTree(tree.getLength(), tree.getGrow_percentage(), tree.getLeafLength(), 0, 0));
         System.out.println("Hello, World");
-
+        */
     }
 }
