@@ -16,6 +16,7 @@ public class main {
 
     public static void main(String args[]) {
         TestGenerator generator = new TestGenerator();
+<<<<<<< Updated upstream
         Probabilistic proba = new Probabilistic(60000);
         
         long timeIni=System.currentTimeMillis();
