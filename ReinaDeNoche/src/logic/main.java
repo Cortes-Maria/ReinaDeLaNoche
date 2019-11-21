@@ -27,6 +27,12 @@ public class main {
         
         FileCsv archivo=new FileCsv();
         archivo.writeCsvFile(laita, "Archivo.csv", ",");
+        
+        Greedy voraz=new Greedy(60000);
+         ArrayList<Long[]> laita2 = voraz.selectObjetive(generator.getTests()[0]);
+         
+        FileCsv archivo2=new FileCsv();
+        archivo2.writeCsvFile(laita2, "Archivo2.csv", ",");
         conectionFTP.changeDataFTP();
         /*for(int i=0; i<laita.size();i++){
             System.out.println("x:" +laita.get(i)[0]+"\n h:"+laita.get(i)[1]+"\n ida: "+laita.get(i)[2]+"\n tot: "+laita.get(i)[3]);

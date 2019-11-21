@@ -61,7 +61,7 @@ public class conectionFTP {
             a.deleteFile("public_html/bd1.csv");
             a.deleteFile("public_html/bd2.csv");
             a.uploadFile("Archivo.csv", "public_html/bd1.csv");
-            a.uploadFile("Archivo.csv", "public_html/bd2.csv");
+            a.uploadFile("Archivo2.csv", "public_html/bd2.csv");
             a.disconect();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);

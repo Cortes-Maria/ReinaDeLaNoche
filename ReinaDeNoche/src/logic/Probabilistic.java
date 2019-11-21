@@ -141,13 +141,14 @@ public class Probabilistic {
         int cont = 0;
         System.out.println(demostrationTime);
         while ((timeFinal - timeIni) < planingTime) {
-            Long[] list = new Long[4];
+            Long[] list = new Long[5];
             int random = (int) (Math.random() * treeProbSelection.size());
             int pos = treeProbSelection.get(random);
             list[0] = (long) treeList.get(pos).getPosX();
             list[1] = (long) ((Math.pow(2, treeList.get(pos).getLevels())) / 2);
             list[2] = (long) countTime;
             list[3] = (long) (((list[2]) + (list[1] - 1) + (treeList.get(pos).getTimeTotal())));
+            list[4] = (long) (treeList.get(pos).getDistanceTotal());
             if (list[3] <= demostrationTime) {
                 System.out.println("x:" + list[0] + "\n h:" + list[1] + "\n ida: " + list[2] + "\n tot: " + list[3]);
                 actionList.add(list);

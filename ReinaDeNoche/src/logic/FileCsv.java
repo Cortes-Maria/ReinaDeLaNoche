@@ -35,16 +35,19 @@ public class FileCsv {
           file.append("X").append(delimiter);
           file.append("CountLeaf").append(delimiter);
           file.append("TimeInitial").append(delimiter);
-          file.append("TimeFinal").append(nextLine);
+          file.append("TimeFinal").append(delimiter);
+          file.append("DistanceTotal").append(nextLine);
           for(int i=0;i<array.size();i++){
               String var1=Long.toString(array.get(i)[0]);
               String var2=Long.toString(array.get(i)[1]);
               String var3=Long.toString(array.get(i)[2]);
               String var4=Long.toString(array.get(i)[3]);
+              String var5=Long.toString(array.get(i)[4]);
               file.append(var1).append(delimiter);
               file.append(var2).append(delimiter);
               file.append(var3).append(delimiter);
-              file.append(var4).append(nextLine);
+              file.append(var4).append(delimiter);
+              file.append(var5).append(nextLine);
           }
           file.flush();
           file.close();
