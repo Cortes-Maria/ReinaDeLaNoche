@@ -85,4 +85,38 @@ public class TestTree {
     public double getLeafLength() {
         return this.leafLength;
     }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setLevels(int levels) {
+        this.levels = levels;
+    }
+
+    public void setLeafLength(double leafLength) {
+        this.leafLength = leafLength;
+    }
+
+    public void setDistanceLeaf(double distanceLeaf) {
+        this.distanceLeaf = distanceLeaf;
+    }
+
+    public void setLeafCount(int leafCount) {
+        this.leafCount = leafCount;
+    }
+
+    public void setDistanceTotal(double distanceTotal) {
+        this.distanceTotal = distanceTotal;
+    }
+
+    public void setTimeTotal(double timeTotal) {
+        this.timeTotal = timeTotal;
+    }
+    
+    
 }
