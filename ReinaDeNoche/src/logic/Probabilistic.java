@@ -17,17 +17,21 @@ public class Probabilistic {
 
     private int rangeProb;
     private double medium;
-    private ArrayList<Integer[]> actionList;
+    private ArrayList<Long[]> actionList;
     private List<Integer> treeProbSelection;
     private int totalProb;
+    private double demostrationTime;
+    private double planingTime;
 
-    public Probabilistic() {
+    public Probabilistic(double pTotalTime) {
 
-        actionList = new ArrayList<Integer[]>();
+        actionList = new ArrayList<Long[]>();
         medium = 0;
         rangeProb = 0;
         totalProb = 0;
         treeProbSelection = new ArrayList<Integer>();
+        planingTime = pTotalTime * 0.20;
+        demostrationTime = pTotalTime - planingTime;
     }
 
     public void listConcatenation(double pPercentage, int pTreePos) {
@@ -52,11 +56,11 @@ public class Probabilistic {
         this.medium = medium;
     }
 
-    public ArrayList<Integer[]> getActionList() {
+    public ArrayList<Long[]> getActionList() {
         return actionList;
     }
 
-    public void setActionList(ArrayList<Integer[]> actionList) {
+    public void setActionList(ArrayList<Long[]> actionList) {
         this.actionList = actionList;
     }
 
@@ -69,6 +73,7 @@ public class Probabilistic {
     }
 
     public void changePostPosibility(ArrayList<TestTree> treeList) {
+        treeProbSelection.clear();
         double sum = sumPosibility(treeList);
         double actualPercentage = 0.0;
         int treePos = 0;
@@ -102,13 +107,15 @@ public class Probabilistic {
             System.out.println(tree.getWeight());
         }
     }
-  public void treeProbPrint() {
-        for(Integer pes: this.treeProbSelection){
+
+    public void treeProbPrint() {
+        for (Integer pes : this.treeProbSelection) {
             System.out.println(pes);
-            
+
         }
-        System.out.println("Size"+this.treeProbSelection.size());
+        System.out.println("Size" + this.treeProbSelection.size());
     }
+
     public double sumPosibility(ArrayList<TestTree> treeList) {
         double total = 0;
         for (TestTree tree : treeList) {
@@ -116,28 +123,53 @@ public class Probabilistic {
         }
         //System.out.println(total);
         return total;
+
+    }
+    // actionList[] = Action
+    // action[0] = X
+    // action [1] = 2**n/2
+    // action [2] = TiempoSalida
+    // action [3] = action[2] + (action[1]-1) + tiempoTotal
+
+    public ArrayList<Long[]> selectObjetive(ArrayList<TestTree> treeList) {
         
+        int indexTree = 0;
+        long timeIni;
+        long timeFinal = 0;
+        timeIni = System.currentTimeMillis();
+        int countTime = 0;
+        int cont = 0;
+        System.out.println(demostrationTime);
+        while ((timeFinal - timeIni) < planingTime) {
+            Long[] list = new Long[4];
+            int random = (int) (Math.random() * treeProbSelection.size());
+            int pos = treeProbSelection.get(random);
+            list[0] = (long) treeList.get(pos).getPosX();
+            list[1] = (long) ((Math.pow(2, treeList.get(pos).getLevels())) / 2);
+            list[2] = (long) countTime;
+            list[3] = (long) (((list[2]) + (list[1] - 1) + (treeList.get(pos).getTimeTotal())));
+            if (list[3] <= demostrationTime) {
+                System.out.println("x:" + list[0] + "\n h:" + list[1] + "\n ida: " + list[2] + "\n tot: " + list[3]);
+                actionList.add(list);
+                 //printActionList();
+                 cont++;
+
+                
+                countTime = (int) ((list[3]) + 1);
+                treeList.get(pos).setLeafCount((int) ((treeList.get(pos).getLeafCount()) - list[1]));
+                changePostPosibility(treeList);
+                System.out.println("Lista" + treeProbSelection.size());
+            }
+            timeFinal = System.currentTimeMillis();
+        }
+        return actionList;
     }
 
-    public ArrayList<Integer[]> selectObjetive(ArrayList<TestTree> treeList) {
-        Integer list[] = {1, 2};
-        actionList.add(list);
-        int count = 0;
-        int indexTree = 0;
-        double time = 0;
-        for (TestTree treeList1 : treeList) {
-            indexTree = (int) (Math.random() * treeList.size());
-
-            System.out.println("Posi: " + treeList1.getWeight());
-            System.out.println("Distancia Total: " + treeList1.getDistanceTotal());
-            System.out.println("Hojas Totales: " + treeList1.getLeafCount());
-            time += treeList1.getTimeTotal();
-            count++;
-
+    public void printActionList() {
+        for (int i = 0; i < actionList.size(); i++) {
+            System.out.println("x:" + actionList.get(i)[0] + "\n h:" + actionList.get(i)[1] + "\n ida: " + actionList.get(i)[2]
+                    + "\n tot: " + actionList.get(i)[3]);
         }
-        System.out.println("Imposibles: " + count);
-        System.out.println(time / 1000);
-        return actionList;
     }
 
 }
