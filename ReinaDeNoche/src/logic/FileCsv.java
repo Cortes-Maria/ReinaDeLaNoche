@@ -35,7 +35,7 @@ public class FileCsv {
           file.append("X").append(delimiter);
           file.append("CountLeaf").append(delimiter);
           file.append("TimeInitial").append(delimiter);
-          file.append("TimeFinal").append(nextLine);
+          file.append("TimeFinal").append("\n");
           for(int i=0;i<array.size();i++){
               String var1=Long.toString(array.get(i)[0]);
               String var2=Long.toString(array.get(i)[1]);
@@ -44,7 +44,7 @@ public class FileCsv {
               file.append(var1).append(delimiter);
               file.append(var2).append(delimiter);
               file.append(var3).append(delimiter);
-              file.append(var4).append(nextLine);
+              file.append(var4).append("\n");
           }
           file.flush();
           file.close();
