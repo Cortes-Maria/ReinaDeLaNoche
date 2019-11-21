@@ -16,25 +16,22 @@ public class main {
 
     public static void main(String args[]) {
         TestGenerator generator = new TestGenerator();
-        //Probabilistic proba = new Probabilistic(60000);
+        Probabilistic proba = new Probabilistic(60000);
         
         long timeIni=System.currentTimeMillis();
         System.out.println(timeIni);
         
-      //  proba.changePostPosibility(generator.getTests()[0]);
-        //ArrayList<Long[]> laita = proba.selectObjetive(generator.getTests()[0]);
-       //  proba.printActionList();
+        proba.changePostPosibility(generator.getTests()[0]);
+        ArrayList<Long[]> laita = proba.selectObjetive(generator.getTests()[0]);
+        proba.printActionList();
         
-        Greedy voraz=new Greedy(60000);
-        ArrayList<Long[]> laita2= voraz.selectObjetive(generator.getTests()[0]);
-        
-        //FileCsv archivo=new FileCsv();
-        //archivo.writeCsvFile(laita, "Archivo.csv", ",");
-        
-        FileCsv archivo2=new FileCsv();
-        archivo2.writeCsvFile(laita2, "Archivo2.csv", ",");
-        
-     
+        FileCsv archivo=new FileCsv();
+        archivo.writeCsvFile(laita, "Archivo.csv", ",");
+        conectionFTP.changeDataFTP();
+        /*for(int i=0; i<laita.size();i++){
+            System.out.println("x:" +laita.get(i)[0]+"\n h:"+laita.get(i)[1]+"\n ida: "+laita.get(i)[2]+"\n tot: "+laita.get(i)[3]);
+        }*/
+        //proba.treeProbPrint();
        
     }
 }
