@@ -18,7 +18,21 @@ public class main {
         TestGenerator generator = new TestGenerator();
         Probabilistic proba = new Probabilistic();
         System.err.println(generator.getTests().getClass());
-        System.out.println(proba.selectObjetive( generator.getTests()[0]));
+        // System.out.println(proba.selectObjetive( generator.getTests()[2]));
+        /*int number = 0;
+        for (int i = 0; i < 3; i++) {
+            number =  (number | 1);
+            number = (number << 1);
+        }
+        number = (number >> 1);
+        System.out.println(number);
+*/
+        proba.changePostPosibility(generator.getTests()[1]);
+        //proba.printPercentages(generator.getTests()[2]);
+        //proba.printWeight(generator.getTests()[2]);
+        //proba.sumPosibility(generator.getTests()[2]);
+        proba.treeProbPrint();
+        
         /*
         TestTree tree = (generator.getTests()[0].get(0));
         System.out.println(generator.getTests()[2].size());
@@ -27,6 +41,6 @@ public class main {
         double length = tree.getLength();
         System.out.println("S" + sizeOfTree(tree.getLength(), tree.getGrow_percentage(), tree.getLeafLength(), 0, 0));
         System.out.println("Hello, World");
-        */
+         */
     }
 }

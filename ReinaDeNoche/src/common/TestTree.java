@@ -12,17 +12,28 @@ public class TestTree {
     private int leafCount;
     private double distanceTotal;
     private double timeTotal;
+    private double probPercentage;
+
+    public double getProbPercentage() {
+        return probPercentage;
+    }
+
+    public void setProbPercentage(double probPercentage) {
+        this.probPercentage = probPercentage;
+    }
     
     public TestTree(int pPosX, int pLength, int pLevels) {
         this.posX = pPosX;
         this.length = pLength;
         this.levels = pLevels;
         this.distanceLeaf = 0;
+        this.probPercentage =0;
         this.leafCount = (int) Math.pow(2, pLevels);
         for (leafLength = pLength; --pLevels > 0; leafLength *= ITestConstants.GROW_PERCENTAGE) {
             distanceLeaf += leafLength;
         }
 
+        
         this.distanceTotal = 2 * (distanceLeaf + ((double) Math.sqrt(Math.pow(ITestConstants.TEST_POSICION_HORMIGUERO - pPosX, 2))));
         this.timeTotal = this.distanceTotal / ANT_VELOCITY;
     }
@@ -31,7 +42,7 @@ public class TestTree {
         return distanceLeaf;
     }
 
-    public double getProbability() {
+    public double getWeight() {
         return leafCount / timeTotal;
     }
 
